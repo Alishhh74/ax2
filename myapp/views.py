@@ -1,3 +1,4 @@
+
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Property
 from .forms import PropertyForm  # Создадим форму для работы с моделью
@@ -37,3 +38,8 @@ def property_delete(request, pk):
         property.delete()
         return redirect('property_list')
     return render(request, 'property_confirm_delete.html', {'property': property})
+
+from django.shortcuts import render
+def home(request):
+    return render(request, 'home.html')
+

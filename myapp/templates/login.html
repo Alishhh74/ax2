@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Вход</title>
+  <style>
+    body {
+      background-color: #121212;
+      color: #ffffff;
+      font-family: Arial, sans-serif;
+      display: flex; 
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .form-container {
+      background-color: #1e1e1e;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(255,255,255,0.1);
+      width: 300px;
+      position: relative;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      background: #2c2c2c;
+      border: none;
+      border-radius: 6px;
+      color: #ffffff;
+    }
+
+    input[type="button"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 15px;
+      background-color: #03dac6;
+      border: none;
+      border-radius: 6px;
+      color: #000000;
+      cursor: pointer;
+    }
+
+    input[type="button"]:hover {
+      background-color: #018786;
+    }
+
+    .message {
+      position: absolute;
+      bottom: -50px;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      padding: 10px;
+      background-color: #ff5252;
+      color: white;
+      border-radius: 6px;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      pointer-events: none;
+      font-size: 14px;
+    }
+
+    .message.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Вход в аккаунт</h2>
+    <form id="loginForm">
+      <input type="text" id="username" name="username" placeholder="Имя пользователя" required>
+      <input type="password" id="password" name="password" placeholder="Пароль" required>
+      <input type="button" value="Войти" onclick="redirectToMainPage()">
+    </form>
+    <div id="message" class="message"></div>
+  </div>
+
+  <script>
+    function showMessage(text) {
+      const msg = document.getElementById('message');
+      msg.textContent = text;
+      msg.classList.add('show');
+      clearTimeout(msg.timer);
+      msg.timer = setTimeout(() => {
+        msg.classList.remove('show');
+      }, 3000);
+    }
+
+    function redirectToMainPage() {
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value.trim();
+
+      if (!username) {
+        showMessage('Пожалуйста, введите имя пользователя.');
+        return;
+      }
+
+      if (!password) {
+        showMessage('Пожалуйста, введите пароль.');
+        return;
+      }
+
+      // Всё заполнено — переход
+      window.location.href = "http://127.0.0.1:5500/myapp/templates/main_list.html";
+    }
+  </script>
+</body>
+</html>
+

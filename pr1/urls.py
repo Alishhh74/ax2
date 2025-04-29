@@ -17,6 +17,7 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path
+
 from myapp.views import property_list, property_create, property_update, property_delete  # Импортируем представления
 
 urlpatterns = [
@@ -26,3 +27,14 @@ urlpatterns = [
     path('property/<int:pk>/edit/', property_update, name='property_update'),  # Страница редактирования недвижимости
     path('property/<int:pk>/delete/', property_delete, name='property_delete'),  # Страница удаления недвижимости
 ]
+
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+]
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('myapp.urls')),
+]
+
