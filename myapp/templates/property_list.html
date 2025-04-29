@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список недвижимости</title>
+</head>
+<body>
+    <h1>Список недвижимости</h1>
+    <a href="{% url 'property_create' %}">Добавить новую недвижимость</a>
+    <ul>
+        {% for property in properties %}
+            <li>
+                {{ property.title }} - {{ property.price }} 
+                <a href="{% url 'property_update' property.pk %}">Редактировать</a>
+                <a href="{% url 'property_delete' property.pk %}">Удалить</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

@@ -14,9 +14,15 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.contrib import admin
 from django.urls import path
+from myapp.views import property_list, property_create, property_update, property_delete  # Импортируем представления
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls),  # URL для админки
+    path('', property_list, name='property_list'),  # Главная страница со списком недвижимости
+    path('property/new/', property_create, name='property_create'),  # Страница создания новой недвижимости
+    path('property/<int:pk>/edit/', property_update, name='property_update'),  # Страница редактирования недвижимости
+    path('property/<int:pk>/delete/', property_delete, name='property_delete'),  # Страница удаления недвижимости
 ]
